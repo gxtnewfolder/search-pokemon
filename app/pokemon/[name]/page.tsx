@@ -1,17 +1,23 @@
 "use client";
+
 import { GET_POKEMON } from "@/graphql/queries";
 import { IPokemon } from "@/typings";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import React from "react";
 
-type Props = {
-  params: {
-    name: string;
-  };
-};
+const PokemonPage = () => {
+  const params = useParams(); // 
+  if (!params) {
+    return (
+      <p className="text-white flex items-center justify-center">
+        No parameters found.
+      </p>
+    );
+  }
+  const name = params.name as string; // Ensure it's a string
 
-const PokemonPage = ({ params: { name } }: Props) => {
   const { data, loading, error } = useQuery(GET_POKEMON, {
     variables: { name },
   });
