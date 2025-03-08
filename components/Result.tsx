@@ -12,25 +12,21 @@ export const Result: React.FC<ResultProps> = ({ pokemon }) => {
 
   if (!pokemon) {
     return (
-      <p className="text-white text-center">
+      <p className="text-black text-center">
         No Pokémon found. Try another name.
       </p>
     );
   }
 
   return (
-    <div className="text-white border p-5 rounded-lg max-w-md mx-auto bg-gray-800">
-      <button
-        className="bg-gray-600 text-white px-3 py-2 rounded-lg mb-3 hover:bg-gray-500"
-        onClick={() => router.back()} // Navigate to the previous page
-      >
-        ← Back
-      </button>
+    <div className="text-black border p-5 rounded-lg max-w-md mx-auto bg-white">
       <h2 className="text-2xl font-bold text-center">{pokemon.name}</h2>
       <Image
         src={pokemon.image}
         alt={pokemon.name}
         className="mx-auto w-40 h-40 my-3"
+        width={160}
+        height={160}
       />
       <p>
         <strong>Classification:</strong> {pokemon.classification}
@@ -59,21 +55,20 @@ export const Result: React.FC<ResultProps> = ({ pokemon }) => {
         {pokemon.height.maximum}
       </p>
 
-      Evolutions (Click to navigate)
       {pokemon.evolutions && pokemon.evolutions.length > 0 && (
-        <div>
-          <h3 className="text-xl font-bold mt-4">Evolutions</h3>
-          <ul>
+        <div className="mt-5">
+          <h2 className="text-xl">Evolutions</h2>
+          <div className="flex gap-2">
             {pokemon.evolutions.map((evo) => (
-              <li
+              <button
                 key={evo.name}
-                className="text-blue-400 cursor-pointer hover:underline"
                 onClick={() => router.push(`/pokemon/${evo.name}`)}
+                className="bg-white-700 p-2 rounded border hover:bg-blue-100"
               >
                 {evo.name}
-              </li>
+              </button>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

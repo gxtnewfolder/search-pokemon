@@ -58,8 +58,4 @@ export const resolvers = {
       return data.pokemons;
     },
   },
-
-  Mutation: {
-    // No mutations needed since we are only reading data from an external API
-  },
 };

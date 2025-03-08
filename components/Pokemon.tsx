@@ -10,23 +10,28 @@ type Props = {
 
 export const Pokemon = ({ pokemon }: Props) => {
 	return (
-		<article className="flex flex-col p-4 bg-slate-200 dark:bg-zinc-800 hover:scale-110 shadow-sm hover:shadow-lg hover:bg-slate-300 transition duration-300 ease-out text-white rounded-lg">
+		<article className="flex flex-col p-4 bg-white-200 hover:scale-100 shadow-sm hover:shadow-lg hover:bg-while-300 text-black rounded-lg">
 			{/* Image */}
 			{pokemon.image && (
-				<div className="relative w-full h-56">
+				<div className="relative w-full h-52">
 					<Image
 						src={pokemon.image}
 						alt={pokemon.name}
 						layout="fill"
 						objectFit="contain"
-						className="rounded-t-lg shadow-md"
+						className="rounded-t-lg p-2"
 						priority
 					/>
 				</div>
 			)}
 
+			{/* Pokémon Number */}
+			<p className="text-sm text-center mt-2">
+				<strong>#{pokemon.number}</strong>
+			</p>
+
 			{/* Pokémon Name */}
-			<h1 className="font-bold text-2xl my-2 text-center">{pokemon.name}</h1>
+			<h1 className="font-bold text-l my-2 text-center">{pokemon.name}</h1>
 
 			{/* Pokémon Type(s) */}
 			{pokemon.types && (
@@ -34,23 +39,6 @@ export const Pokemon = ({ pokemon }: Props) => {
 					<strong>Type:</strong> {pokemon.types.join(", ")}
 				</p>
 			)}
-
-			{/* Base Experience */}
-			{/* <p className="text-sm text-center">
-				<strong>Base Experience:</strong> {pokemon.base_experience}
-			</p> */}
-
-			{/* Height & Weight */}
-			<p className="text-sm text-center">
-				<strong>Height:</strong> {pokemon.height.maximum} | <strong>Weight:</strong> {pokemon.weight.maximum}
-			</p>
-
-			{/* Abilities */}
-			{/* {pokemon.abilities && (
-				<p className="text-sm text-center mt-2">
-					<strong>Abilities:</strong> {pokemon.abilities.join(", ")}
-				</p>
-			)} */}
 
 			{/* Read More Link */}
 			<Link
