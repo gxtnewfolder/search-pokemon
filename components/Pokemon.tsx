@@ -1,5 +1,4 @@
 "use client";
-import { BASE_URL } from "@/config";
 import { IPokemon } from "@/typings";
 import Link from "next/link";
 import Image from "next/image";
