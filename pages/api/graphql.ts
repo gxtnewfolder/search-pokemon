@@ -4,9 +4,6 @@ import { typeDefs } from "@/graphql/schema";
 import { resolvers } from "@/graphql/resolvers";
 import { ApolloClient, InMemoryCache, HttpLink, NormalizedCacheObject } from "@apollo/client";
 
-export type Context = {
-  client: ApolloClient<NormalizedCacheObject>;  // Replace 'any' with 'NormalizedCacheObject'
-};
 
 // Initialize Apollo Client for querying external Pokémon API
 const client = new ApolloClient<NormalizedCacheObject>({
@@ -18,7 +15,7 @@ const client = new ApolloClient<NormalizedCacheObject>({
 });
 
 // Create Apollo Server
-const apolloServer = new ApolloServer<Context>({
+const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
 });
