@@ -18,4 +18,10 @@ export interface IPokemon {
   maxCP: number;
   maxHP: number;
   image: string;
+  evolutions?: {
+    id: string;
+    number: string;
+    name: string;
+    image: string;
+  }[];
 }
