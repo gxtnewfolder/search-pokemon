@@ -1,11 +1,15 @@
-import { Context } from "@/pages/api/graphql";
-import { gql } from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://graphql-pokemon2.vercel.app/", // Replace with your GraphQL API URL
+  cache: new InMemoryCache(),
+});
 
 export const resolvers = {
   Query: {
     // Get Pokémon by name
-    pokemon: async (_parent: any, args: { name: string }, context: Context) => {
-      const { data } = await context.client.query({
+    pokemon: async (_parent: any, args: { name: string }) => {
+      const { data } = await client.query({
         query: gql`
           query GetPokemon($name: String!) {
             pokemon(name: $name) {
@@ -39,8 +43,8 @@ export const resolvers = {
     },
 
     // Get all Pokémon (limit to first 10 for performance)
-    pokemons: async (_parent: any, _args: any, context: Context) => {
-      const { data } = await context.client.query({
+    pokemons: async () => {
+      const { data } = await client.query({
         query: gql`
           query GetPokemons {
             pokemons(first: 10) {
