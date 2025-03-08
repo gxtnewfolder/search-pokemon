@@ -55,7 +55,7 @@ export const Pokemon = ({ pokemon }: Props) => {
 
 			{/* Read More Link */}
 			<Link
-				href={`${BASE_URL}/pokemon/${pokemon.name}`}
+				href={`/pokemon/${pokemon.name}`}
 				className="bg-orange-500 mt-5 p-2 rounded-lg text-center text-white"
 			>
 				View Details

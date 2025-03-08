@@ -11,10 +11,9 @@ const PokemonPage = () => {
   const params = useParams();
   const name = params?.name as string; // Ensure it's a string, but avoid breaking the hook order
 
-  // ✅ Always call the hook, even if 'name' is missing
   const { data, loading, error } = useQuery(GET_POKEMON, {
     variables: { name },
-    skip: !name, // ✅ Skip query execution if 'name' is not available
+    skip: !name,
   });
 
   if (!name) {
