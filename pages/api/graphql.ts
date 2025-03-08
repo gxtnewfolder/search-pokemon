@@ -24,6 +24,4 @@ const apolloServer = new ApolloServer<Context>({
 });
 
 // Export API handler
-export default startServerAndCreateNextHandler(apolloServer, {
-  context: async (_req, _res) => ({ client }),
-});
+export default startServerAndCreateNextHandler(apolloServer);

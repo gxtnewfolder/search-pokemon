@@ -2,6 +2,7 @@
 import { GET_POKEMON } from "@/graphql/queries";
 import { IPokemon } from "@/typings";
 import { useQuery } from "@apollo/client";
+import Image from "next/image";
 import React from "react";
 
 type Props = {
@@ -36,7 +37,7 @@ const PokemonPage = ({ params: { name } }: Props) => {
       <h1 className="text-4xl font-bold text-center">{pokemon.name}</h1>
       <section className="flex flex-col items-center mt-4">
         {pokemon.image && (
-          <img
+          <Image
             src={pokemon.image}
             alt={pokemon.name}
             width={250}
