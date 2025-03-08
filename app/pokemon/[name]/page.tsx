@@ -8,19 +8,22 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const PokemonPage = () => {
-  const params = useParams(); // 
-  if (!params) {
+  const params = useParams();
+  const name = params?.name as string; // Ensure it's a string, but avoid breaking the hook order
+
+  // ✅ Always call the hook, even if 'name' is missing
+  const { data, loading, error } = useQuery(GET_POKEMON, {
+    variables: { name },
+    skip: !name, // ✅ Skip query execution if 'name' is not available
+  });
+
+  if (!name) {
     return (
       <p className="text-white flex items-center justify-center">
-        No parameters found.
+        Invalid Pokémon name.
       </p>
     );
   }
-  const name = params.name as string; // Ensure it's a string
-
-  const { data, loading, error } = useQuery(GET_POKEMON, {
-    variables: { name },
-  });
 
   if (loading)
     return (
