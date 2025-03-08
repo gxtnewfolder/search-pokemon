@@ -1,20 +1,15 @@
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import { PrismaClient } from "@prisma/client";
 import { typeDefs } from "@/graphql/schema";
 import { resolvers } from "@/graphql/resolvers";
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
+import { ApolloClient, InMemoryCache, HttpLink, NormalizedCacheObject } from "@apollo/client";
 
 export type Context = {
-  prisma: PrismaClient;
-  client: ApolloClient<any>;
+  client: ApolloClient<NormalizedCacheObject>;  // Replace 'any' with 'NormalizedCacheObject'
 };
 
-// Initialize Prisma Client
-const prisma = new PrismaClient();
-
 // Initialize Apollo Client for querying external Pokémon API
-const client = new ApolloClient({
+const client = new ApolloClient<NormalizedCacheObject>({
   link: new HttpLink({
     uri: "https://graphql-pokemon2.vercel.app/", // Pokémon GraphQL API
     fetch,
@@ -30,5 +25,5 @@ const apolloServer = new ApolloServer<Context>({
 
 // Export API handler
 export default startServerAndCreateNextHandler(apolloServer, {
-  context: async (_req, _res) => ({ prisma, client }),
+  context: async (_req, _res) => ({ client }),
 });
