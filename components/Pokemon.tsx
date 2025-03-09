@@ -37,7 +37,7 @@ const typeColors: Record<string, string> = {
 export const Pokemon = ({ pokemon }: Props) => {
   return (
     <Link
-      href={`/pokemon/${pokemon.name}`}
+      href={`/pokemon/${pokemon.name.toLowerCase()}`}
       className="group relative p-4 border rounded-lg shadow-md bg-white flex flex-col items-center transform transition-all duration-300 hover:scale-102 hover:shadow-xl"
     >
       {/* Pokemon Image with Hover Effect */}

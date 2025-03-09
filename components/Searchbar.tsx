@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_POKEMONS } from "@/graphql/queries";
 import { IPokemon } from "@/typings";
@@ -10,6 +10,14 @@ export const SearchBar = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Reset search state when route changes
+  useEffect(() => {
+    setSearch("");
+    setSuggestions([]);
+    setShowSuggestions(false);
+  }, [pathname]);
 
   const { data } = useQuery(GET_ALL_POKEMONS, {
     variables: { first: 151 },
@@ -41,11 +49,14 @@ export const SearchBar = () => {
     }
   };
 
-  const handleSuggestionClick = async (pokemonName: string) => {
-    setSearch(pokemonName);
+  const handleSuggestionClick = (pokemonName: string) => {
+    router.push(`/pokemon/${pokemonName.toLowerCase()}`);
+  };
+
+  const clearSearch = () => {
+    setSearch("");
     setSuggestions([]);
     setShowSuggestions(false);
-    await router.push(`/pokemon/${pokemonName.toLowerCase()}`);
   };
 
   return (
@@ -62,11 +73,48 @@ export const SearchBar = () => {
               setTimeout(() => setShowSuggestions(false), 300)
             }}
           />
+          {search && (
+            <button
+              type="button"
+              onClick={clearSearch}
+              className="absolute right-10 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="Clear search"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-4 h-4"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          )}
           <button
             type="submit"
             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-blue-500 transition-colors"
             disabled={!search}
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+              />
+            </svg>
           </button>
         </div>
       </form>
