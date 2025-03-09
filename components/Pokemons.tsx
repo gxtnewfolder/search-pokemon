@@ -13,19 +13,19 @@ export const Pokemons = () => {
     variables: { first: 151 },
   });
 
-  // Pokémon List
-  const allPokemons: IPokemon[] = data?.pokemons || [];
-
   // Selected Type for Filtering
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [displayMode, setDisplayMode] = useState<'paginate' | 'loadMore'>('paginate');
   const [loadedItems, setLoadedItems] = useState(ITEMS_PER_PAGE);
 
+  // Memoize the Pokemon list
+  const allPokemons = useMemo<IPokemon[]>(() => data?.pokemons || [], [data]);
+
   // Function to filter Pokémon based on selected type
   const filteredPokemons = useMemo(() => {
     return selectedType
-      ? allPokemons.filter((pokemon) => pokemon.types.includes(selectedType))
+      ? allPokemons.filter((pokemon: IPokemon) => pokemon.types.includes(selectedType))
       : allPokemons;
   }, [selectedType, allPokemons]);
 
@@ -100,7 +100,7 @@ export const Pokemons = () => {
       {/* Pokémon List */}
       <div className="flex-1">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {currentPokemons.map((pokemon) => (
+          {currentPokemons.map((pokemon: IPokemon) => (
             <Pokemon key={pokemon.id} pokemon={pokemon} attacks={pokemon.attacks} />
           ))}
         </div>

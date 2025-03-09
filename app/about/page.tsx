@@ -51,7 +51,7 @@ export default function AboutPage() {
             <div className="space-y-2">
               <h3 className="text-lg font-semibold text-blue-600">Type Filtering</h3>
               <p className="text-gray-600">
-                Filter Pokémon by their types to find exactly what you're looking for.
+                Filter Pokémon by their types to find exactly what you&apos;re looking for.
               </p>
             </div>
             <div className="space-y-2">
