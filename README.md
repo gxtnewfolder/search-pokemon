@@ -82,4 +82,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 LinkedIn: [https://www.linkedin.com/in/arnatngaw/](https://www.linkedin.com/in/arnatngaw/)
-Project Link: [https://github.com/gxtnewfolder/pokemon-search](https://github.com/gxtnewfolder/pokemon-search)
+Project Link: [https://github.com/gxtnewfolder/search-pokemon](https://github.com/gxtnewfolder/search-pokemon)
