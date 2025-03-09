@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { SearchBar } from "@/components/SearchBar"; // Import your existing SearchBar component
+import { SearchBar } from "./Searchbar";
 import Link from "next/link";
 
 const Navbar = () => {
