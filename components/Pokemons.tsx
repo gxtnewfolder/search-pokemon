@@ -141,6 +141,7 @@ export const Pokemons = () => {
         {/* Load More Button */}
         {displayMode === 'loadMore' && loadedItems < filteredPokemons.length && (
           <div className="mt-8 flex justify-center">
+            
             <button
               onClick={handleLoadMore}
               className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
