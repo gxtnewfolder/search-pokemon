@@ -38,10 +38,10 @@ const Navbar = () => {
             Home
           </Link>
           <Link 
-            href="/favorites" 
+            href="/about" 
             className="text-gray-600 hover:text-blue-500 font-medium transition-colors"
           >
-            Favorites
+            About
           </Link>
         </div>
       </div>
