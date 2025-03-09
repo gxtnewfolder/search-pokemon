@@ -24,4 +24,14 @@ export interface IPokemon {
     name: string;
     image: string;
   }[];
+  attacks: {
+    fast: Attack[];
+    special: Attack[];
+  };
+}
+
+export interface Attack {
+  name: string;
+  type: string;
+  damage: number;
 }

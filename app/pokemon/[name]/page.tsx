@@ -20,14 +20,14 @@ const PokemonPage = () => {
   const pokemon: IPokemon = data?.pokemon;
 
   return (
-    <div className="text-black border p-5 rounded-lg max-w-5xl mx-auto h-2/3 bg-gray-100 mt-22">
+    <div className="text-black rounded-lg max-w-5xl mx-auto h-2/3 bg-gray-100 mt-22">
       <button
-        className="bg-white-600 text-black px-2 rounded-lg mb-3 hover:bg-white-500"
-        onClick={() => router.back()} // Navigate to the previous page
+        onClick={() => router.push('/')}
+        className="text-black bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-lg m-4 transition"
       >
-        ← Back
+        Back to List
       </button>
-      <Result pokemon={pokemon} />
+      <Result pokemon={pokemon} attacks={pokemon.attacks} />
     </div>
   );
 };

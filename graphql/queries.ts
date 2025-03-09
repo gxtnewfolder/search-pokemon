@@ -49,11 +49,22 @@ export const GET_POKEMON = gql`
       maxHP
       image
       evolutions {
-        # Fetch evolution details
         id
         number
         name
         image
+      }
+      attacks {
+        fast {
+          name
+          type
+          damage
+        }
+        special {
+          name
+          type
+          damage
+        }
       }
     }
   }

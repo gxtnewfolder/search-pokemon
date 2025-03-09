@@ -13,7 +13,7 @@ interface FilterDropdownProps {
 
 const FilterDropdown: React.FC<FilterDropdownProps> = ({ selectedType, setSelectedType }) => {
   return (
-    <div className="relative w-64">
+    <div className="relative w-full md:w-54">
       <label className="block text-gray-700 font-semibold mb-2">Filter by Type</label>
       <select
         className="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"

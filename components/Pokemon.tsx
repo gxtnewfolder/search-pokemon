@@ -1,33 +1,37 @@
 "use client";
-import { IPokemon } from "@/typings";
+import { IPokemon, Attack } from "@/typings";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 
 type Props = {
-  pokemon: IPokemon;
-};
+	pokemon: IPokemon;
+	attacks: {
+	  fast: Attack[];
+	  special: Attack[];
+	};
+  };
 
 // Define colors for each type
 const typeColors: Record<string, string> = {
-  Poison: "bg-purple-500",
+  Poison: "bg-gradient-to-r from-purple-500 to-pink-400",
   Fire: "bg-gradient-to-r from-red-500 to-orange-400",
   Water: "bg-gradient-to-r from-blue-500 to-cyan-400",
   Grass: "bg-gradient-to-r from-green-500 to-lime-400",
-  Electric: "bg-yellow-500",
-  Psychic: "bg-pink-500",
-  Ice: "bg-cyan-500",
-  Bug: "bg-lime-500",
-  Rock: "bg-gray-500",
-  Ghost: "bg-indigo-500",
-  Dragon: "bg-purple-700",
-  Dark: "bg-gray-800",
-  Steel: "bg-gray-400",
-  Fairy: "bg-pink-300",
-  Fighting: "bg-orange-500",
-  Flying: "bg-blue-300",
-  Ground: "bg-yellow-700",
-  Normal: "bg-gray-300",
+  Electric: "bg-gradient-to-r from-yellow-500 to-orange-400",
+  Psychic: "bg-gradient-to-r from-pink-500 to-purple-400",
+  Ice: "bg-gradient-to-r from-cyan-500 to-blue-400",
+  Bug: "bg-gradient-to-r from-lime-500 to-green-400",
+  Rock: "bg-gradient-to-r from-gray-500 to-gray-400",
+  Ghost: "bg-gradient-to-r from-indigo-500 to-purple-400",
+  Dragon: "bg-gradient-to-r from-purple-700 to-pink-400",
+  Dark: "bg-gradient-to-r from-gray-800 to-gray-600",
+  Steel: "bg-gradient-to-r from-gray-400 to-gray-300",
+  Fairy: "bg-gradient-to-r from-pink-300 to-pink-200",
+  Fighting: "bg-gradient-to-r from-orange-500 to-orange-400",
+  Flying: "bg-gradient-to-r from-blue-300 to-blue-200",
+  Ground: "bg-gradient-to-r from-yellow-700 to-yellow-600",
+  Normal: "bg-gradient-to-r from-gray-300 to-gray-200",
 };
 
 export const Pokemon = ({ pokemon }: Props) => {
@@ -41,6 +45,7 @@ export const Pokemon = ({ pokemon }: Props) => {
           layout="fill"
           objectFit="contain"
           priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
 

@@ -37,9 +37,9 @@ export const Pokemons = () => {
 
       {/* Pokémon List on Right */}
       <div className="flex-1">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredPokemons.map((pokemon) => (
-            <Pokemon key={pokemon.id} pokemon={pokemon} />
+            <Pokemon key={pokemon.id} pokemon={pokemon} attacks={pokemon.attacks} />
           ))}
         </div>
       </div>
