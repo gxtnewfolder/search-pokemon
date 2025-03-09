@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import { SearchBar } from "@/components/Searchbar"; // Import your existing SearchBar component
+import { SearchBar } from "@/components/SearchBar"; // Import your existing SearchBar component
 import Link from "next/link";
 
 const Navbar = () => {
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="fixed top-0 left-0 w-full bg-gray-900 text-white shadow-lg z-50">
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo Section */}
         <div className="text-white text-2xl font-bold">
@@ -14,7 +14,9 @@ const Navbar = () => {
         </div>
 
         {/* Search Bar Section */}
-        <SearchBar />
+        <div className="w-1/3">
+          <SearchBar />
+        </div>
 
         {/* Navigation Section */}
         <div className="text-white text-xl hover:text-yellow-500">

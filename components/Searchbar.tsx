@@ -13,13 +13,13 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex space-x-3 my-5">
+    <form onSubmit={handleSearch} className="flex space-x-2 my-5">
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         type="text"
         placeholder="Search Pokémon"
-        className="bg-transparent border text-white p-2 rounded-lg"
+        className="bg-transparent border text-white p-2 rounded-lg w-full"
       />
       <button
         type="submit"

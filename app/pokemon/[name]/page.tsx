@@ -14,15 +14,15 @@ const PokemonPage = () => {
     variables: { name },
   });
 
-  if (loading) return <p className="text-white">Loading...</p>;
-  if (error) return <p className="text-white">Oops! Pokémon not found.</p>;
+  if (loading) return <p className="text-black">Loading...</p>;
+  if (error) return <p className="text-black">Oops! Pokémon not found.</p>;
 
   const pokemon: IPokemon = data?.pokemon;
 
   return (
-    <div className="text-white border p-5 rounded-lg max-w-md mx-auto bg-gray-100 mt-2">
+    <div className="text-black border p-5 rounded-lg max-w-5xl mx-auto h-2/3 bg-gray-100 mt-22">
       <button
-        className="bg-white-600 text-black px-3 py-2 rounded-lg mb-3 hover:bg-white-500"
+        className="bg-white-600 text-black px-2 rounded-lg mb-3 hover:bg-white-500"
         onClick={() => router.back()} // Navigate to the previous page
       >
         ← Back

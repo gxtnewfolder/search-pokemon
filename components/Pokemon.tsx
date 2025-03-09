@@ -5,48 +5,69 @@ import Image from "next/image";
 import React from "react";
 
 type Props = {
-	pokemon: IPokemon;
+  pokemon: IPokemon;
+};
+
+// Define colors for each type
+const typeColors: Record<string, string> = {
+  Poison: "bg-purple-500",
+  Fire: "bg-gradient-to-r from-red-500 to-orange-400",
+  Water: "bg-gradient-to-r from-blue-500 to-cyan-400",
+  Grass: "bg-gradient-to-r from-green-500 to-lime-400",
+  Electric: "bg-yellow-500",
+  Psychic: "bg-pink-500",
+  Ice: "bg-cyan-500",
+  Bug: "bg-lime-500",
+  Rock: "bg-gray-500",
+  Ghost: "bg-indigo-500",
+  Dragon: "bg-purple-700",
+  Dark: "bg-gray-800",
+  Steel: "bg-gray-400",
+  Fairy: "bg-pink-300",
+  Fighting: "bg-orange-500",
+  Flying: "bg-blue-300",
+  Ground: "bg-yellow-700",
+  Normal: "bg-gray-300",
 };
 
 export const Pokemon = ({ pokemon }: Props) => {
-	return (
-		<article className="flex flex-col p-4 bg-white-200 hover:scale-100 shadow-sm hover:shadow-lg hover:bg-while-300 text-black rounded-lg">
-			{/* Image */}
-			{pokemon.image && (
-				<div className="relative w-full h-52">
-					<Image
-						src={pokemon.image}
-						alt={pokemon.name}
-						layout="fill"
-						objectFit="contain"
-						className="rounded-t-lg p-2"
-						priority
-					/>
-				</div>
-			)}
+  return (
+    <div className="p-4 border rounded-lg shadow-md bg-white flex flex-col items-center">
+      {/* Use Next.js Image for better performance */}
+      <div className="w-full h-40 object-contain relative">
+        <Image
+          src={pokemon.image}
+          alt={pokemon.name}
+          layout="fill"
+          objectFit="contain"
+          priority
+        />
+      </div>
 
-			{/* Pokémon Number */}
-			<p className="text-sm text-center mt-2">
-				<strong>#{pokemon.number}</strong>
-			</p>
+	  <p className="text-gray-600 mt-2">#{pokemon.number}</p>
+      <h2 className="text-xl font-bold">{pokemon.name}</h2>
 
-			{/* Pokémon Name */}
-			<h1 className="font-bold text-l my-2 text-center">{pokemon.name}</h1>
+      {/* Display Pokémon Types with Colors */}
+      <div className="flex gap-2 mt-2">
+        {pokemon.types.map((type) => (
+          <span
+            key={type}
+            className={`px-2 py-1 text-white text-sm rounded-lg ${
+              typeColors[type] || "bg-gray-600"
+            }`}
+          >
+            {type}
+          </span>
+        ))}
+      </div>
 
-			{/* Pokémon Type(s) */}
-			{pokemon.types && (
-				<p className="text-sm text-center my-2">
-					<strong>Type:</strong> {pokemon.types.join(", ")}
-				</p>
-			)}
-
-			{/* Read More Link */}
-			<Link
-				href={`/pokemon/${pokemon.name}`}
-				className="bg-orange-500 mt-5 p-2 rounded-lg text-center text-white"
-			>
-				View Details
-			</Link>
-		</article>
-	);
+      {/* View Pokémon Details */}
+      <Link
+        href={`/pokemon/${pokemon.name}`}
+        className="bg-orange-500 mt-5 p-2 rounded-lg text-center text-white"
+      >
+        View Details
+      </Link>
+    </div>
+  );
 };
