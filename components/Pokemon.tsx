@@ -36,9 +36,12 @@ const typeColors: Record<string, string> = {
 
 export const Pokemon = ({ pokemon }: Props) => {
   return (
-    <div className="p-4 border rounded-lg shadow-md bg-white flex flex-col items-center">
-      {/* Use Next.js Image for better performance */}
-      <div className="w-full h-40 object-contain relative">
+    <Link
+      href={`/pokemon/${pokemon.name}`}
+      className="group relative p-4 border rounded-lg shadow-md bg-white flex flex-col items-center transform transition-all duration-300 hover:scale-102 hover:shadow-xl"
+    >
+      {/* Pokemon Image with Hover Effect */}
+      <div className="w-full h-40 object-contain relative transition-transform duration-300 group-hover:-translate-y-2">
         <Image
           src={pokemon.image}
           alt={pokemon.name}
@@ -49,30 +52,42 @@ export const Pokemon = ({ pokemon }: Props) => {
         />
       </div>
 
-	  <p className="text-gray-600 mt-2">#{pokemon.number}</p>
-      <h2 className="text-xl font-bold">{pokemon.name}</h2>
+      {/* Pokemon Info */}
+      <div className="w-full text-center">
+        <p className="text-gray-500 text-sm font-medium">#{pokemon.number}</p>
+        <h2 className="text-xl font-bold text-gray-800 mb-2">
+          {pokemon.name}
+        </h2>
 
-      {/* Display Pokémon Types with Colors */}
-      <div className="flex gap-2 mt-2">
-        {pokemon.types.map((type) => (
-          <span
-            key={type}
-            className={`px-2 py-1 text-white text-sm rounded-lg ${
-              typeColors[type] || "bg-gray-600"
-            }`}
-          >
-            {type}
-          </span>
-        ))}
+        {/* Types */}
+        <div className="flex gap-2 justify-center mb-3">
+          {pokemon.types.map((type) => (
+            <span
+              key={type}
+              className={`px-3 py-1 text-white text-sm rounded-full font-medium ${
+                typeColors[type] || "bg-gray-600"
+              }`}
+            >
+              {type}
+            </span>
+          ))}
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
+          <div className="text-center">
+            <p className="font-semibold">Max CP</p>
+            <p>{pokemon.maxCP}</p>
+          </div>
+          <div className="text-center">
+            <p className="font-semibold">Max HP</p>
+            <p>{pokemon.maxHP}</p>
+          </div>
+        </div>
       </div>
 
-      {/* View Pokémon Details */}
-      <Link
-        href={`/pokemon/${pokemon.name}`}
-        className="bg-orange-500 mt-5 p-2 rounded-lg text-center text-white"
-      >
-        View Details
-      </Link>
-    </div>
+      {/* Selection Indicator */}
+      <div className="absolute inset-0 rounded-lg border-2 border-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </Link>
   );
 };

@@ -29,13 +29,13 @@ export const Pokemons = () => {
     return <p className="text-black flex items-center justify-center">Oops! Something went wrong...</p>;
 
   return (
-    <div className="flex gap-6 p-6">
-      {/* Sidebar Filter on Left */}
-      <div className="w-1/4 min-w-[200px]">
+    <div className="flex flex-col sm:flex-row gap-6 p-6">
+      {/* Sidebar Filter - Full width on mobile, sidebar on larger screens */}
+      <div className="w-full sm:w-1/4 sm:min-w-[200px]">
         <FilterDropdown selectedType={selectedType} setSelectedType={setSelectedType} />
       </div>
 
-      {/* Pokémon List on Right */}
+      {/* Pokémon List - Full width on mobile */}
       <div className="flex-1">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredPokemons.map((pokemon) => (
