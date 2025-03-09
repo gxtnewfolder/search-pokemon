@@ -6,6 +6,7 @@ import { IPokemon } from "@/typings";
 import { useRouter, useParams } from "next/navigation";
 import { Result } from "@/components/Result";
 import Image from "next/image";
+import sadPikachu from "@/public/pikachu-sad.gif";
 
 const PokemonPage = () => {
   const { name } = useParams() as { name: string };
@@ -29,7 +30,7 @@ const PokemonPage = () => {
         <div className="text-center">
           <div className="mb-6">
             <Image
-              src="/sad-pikachu.png"
+              src={sadPikachu}
               alt="Not Found"
               width={200}
               height={200}
